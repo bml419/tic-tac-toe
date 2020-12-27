@@ -1,8 +1,9 @@
 # Imports
 import parameters.config as conf
 import board.board as b
-import tokens.tokens as t
+import tokens as t
 import board.locations as loc
+import players as p
 
 """
 main.py:
@@ -19,6 +20,8 @@ def main():
     #exit(0)
     won = 0
     player = 0
+    player1 = []
+    player2 = []
     #print(loc.locations)
 
     while won != 1:
@@ -31,10 +34,12 @@ def main():
                 flag = loc.remove_cell(cell)
             b.setboard(token,cell,board)
             b.drawboard(board)
-            won = loc.win_check()
+            list1 = p.addLoc(cell, player1)
+            print('list for 1:', list1)
+            won = loc.win_check(list1)
             if won == 1:
                 print('Wow you won idiot!')
-                again = input('Wanna play again? Y or N')
+                again = input('Wanna play again? Y or N\n')
                 if again == 'Y':
                     main()
                 elif again == 'N':
@@ -50,10 +55,12 @@ def main():
                 flag = loc.remove_cell(cell)
             b.setboard(token, cell, board)
             b.drawboard(board)
-            won = loc.win_check()
+            list2 = p.addLoc(cell,player2)
+            print('list for 2:', list2)
+            won = loc.win_check(list2)
             if won == 1:
                 print('Wow you won idiot!')
-                again = input('Wanna play again? Y or N')
+                again = input('Wanna play again? Y or N\n')
                 if again == 'Y':
                     main()
                 elif again == 'N':
